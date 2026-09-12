@@ -29,6 +29,8 @@ async function request(path: string, search = false) {
   if (response.status === 404) {
     return null;
   }
+  if (!response.ok)
+    throw new Error(`TVmaze trenutačno nije dostupan ${response.status}`);
   const data = response.json();
   return data;
 }
@@ -37,6 +39,11 @@ export async function getShows(): Promise<Show[]> {
   return z.array(showScheme).parse(await request("/shows?page=0"));
 }
 
+export async function getShow(id: number): Promise<Show | null> {
+  return showScheme.nullable().parse(await request(`/shows/${id}`));
+}
+
 export async function getEpisodes(id: number): Promise<Episode[]> {
-  return z.array(episodeScheme).parse(await request(`/shows/${id}/episodes`));
+  const data = await request(`/shows/${id}/episodes`);
+  return data === null ? [] : z.array(episodeScheme).parse(data);
 }
