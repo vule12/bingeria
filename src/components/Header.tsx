@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Search } from "lucide-react";
 import Image from "next/image";
-import SearchButton from "./Search";
+import { SearchInput } from "./Search";
+import { Suspense } from "react";
 
 export default function Header() {
   return (
@@ -14,10 +14,12 @@ export default function Header() {
         className="h-12 w-auto object-contain sm:h-16"
       />
       <div className="flex items-center gap-4 lg:gap-8">
-        <Link href="/">Katalog</Link>
-        <Link href="/moja-lista">Moja Lista</Link>
+        <Link href="/">Cataloguse</Link>
+        <Link href="/mylist">My List</Link>
         <Link href="/info">Info</Link>
-        <Search className="text-white" />
+        <Suspense fallback="Error">
+          <SearchInput />
+        </Suspense>
       </div>
     </header>
   );

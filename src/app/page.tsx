@@ -1,9 +1,19 @@
 import Card from "@/components/Card";
 import Break from "@/components/Break";
-import { getShows } from "@/lib/tvmaze";
+import { getShows, searchShows } from "@/lib/tvmaze";
 
-export default async function Home() {
-  const shows = (await getShows()).slice(0, 24);
+interface Props {
+  searchParams: Promise<{ q?: string | string[] }>;
+}
+
+export default async function Home({ searchParams }: Props) {
+  const params = await searchParams;
+  const query =
+    (Array.isArray(params.q) ? params.q[0] : params.q)?.trim().slice(0, 200) ??
+    "";
+  const shows = query
+    ? await searchShows(query)
+    : (await getShows()).slice(0, 24);
   const cardShows = shows.map((show, index) => (
     <Card key={show.id} show={show} priority={index < 4} />
   ));

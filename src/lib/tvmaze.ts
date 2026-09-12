@@ -47,3 +47,13 @@ export async function getEpisodes(id: number): Promise<Episode[]> {
   const data = await request(`/shows/${id}/episodes`);
   return data === null ? [] : z.array(episodeScheme).parse(data);
 }
+
+export async function searchShows(query: string): Promise<Show[]> {
+  const data = await request(
+    `/search/shows?${new URLSearchParams({ q: query })}`,
+    true,
+  );
+  const results = z.array(z.object({ show: showScheme })).parse(data);
+
+  return results.map((result) => result.show);
+}

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import SeriesPage from "@/components/SeriesPage";
 import { getShow, getEpisodes, getShows } from "@/lib/tvmaze";
+import { readWatchlist } from "@/lib/storage";
 
 export const revalidate = 3600;
 
@@ -16,13 +17,20 @@ export default async function Series({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [show, episodes] = await Promise.all([
+  const [show, episodes, watchlist] = await Promise.all([
     getShow(Number(id)),
     getEpisodes(Number(id)),
+    readWatchlist(),
   ]);
   if (!show) {
     notFound();
   }
 
-  return <SeriesPage show={show} episodeCount={episodes.length} />;
+  return (
+    <SeriesPage
+      show={show}
+      episodeCount={episodes.length}
+      isOnList={watchlist.some((item) => item.showId === show.id)}
+    />
+  );
 }

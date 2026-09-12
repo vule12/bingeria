@@ -1,0 +1,74 @@
+[
+  {
+    "showId": 2,
+    "name": "Person of Interest",
+    "image": "https://static.tvmaze.com/uploads/images/original_untouched/163/407679.jpg",
+    "genres": [
+      "Action",
+      "Crime",
+      "Science-Fiction"
+    ],
+    "addedAt": "2026-09-12T18:28:41.447Z",
+    "review": null
+  },
+  {
+    "showId": 3,
+    "name": "Bitten",
+    "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/15.jpg",
+    "genres": [
+      "Drama",
+      "Horror",
+      "Romance"
+    ],
+    "addedAt": "2026-09-12T18:34:31.979Z",
+    "review": null
+  },
+  {
+    "showId": 4,
+    "name": "Arrow",
+    "image": "https://static.tvmaze.com/uploads/images/original_untouched/143/358967.jpg",
+    "genres": [
+      "Drama",
+      "Action",
+      "Science-Fiction"
+    ],
+    "addedAt": "2026-09-12T18:43:13.895Z",
+    "review": null
+  },
+  {
+    "showId": 11,
+    "name": "Gotham",
+    "image": "https://static.tvmaze.com/uploads/images/original_untouched/189/474715.jpg",
+    "genres": [
+      "Drama",
+      "Action",
+      "Crime"
+    ],
+    "addedAt": "2026-09-12T18:43:16.997Z",
+    "review": null
+  },
+  {
+    "showId": 12,
+    "name": "Lost Girl",
+    "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/137.jpg",
+    "genres": [
+      "Drama",
+      "Fantasy",
+      "Horror"
+    ],
+    "addedAt": "2026-09-12T18:43:19.819Z",
+    "review": null
+  },
+  {
+    "showId": 8,
+    "name": "Glee",
+    "image": "https://static.tvmaze.com/uploads/images/original_untouched/0/73.jpg",
+    "genres": [
+      "Drama",
+      "Music",
+      "Romance"
+    ],
+    "addedAt": "2026-09-12T18:43:23.956Z",
+    "review": null
+  }
+]

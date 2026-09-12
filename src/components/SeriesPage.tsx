@@ -8,9 +8,14 @@ import { summaryToText } from "@/lib/catalogue";
 interface SeriesPageProps {
   show: Show;
   episodeCount: number;
+  isOnList: boolean;
 }
 
-export default function SeriesPage({ show, episodeCount }: SeriesPageProps) {
+export default function SeriesPage({
+  show,
+  episodeCount,
+  isOnList,
+}: SeriesPageProps) {
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
       <Link
@@ -67,7 +72,7 @@ export default function SeriesPage({ show, episodeCount }: SeriesPageProps) {
             {summaryToText(show.summary)}
           </p>
           <div className="flex gap-6 items-center">
-            <AddButton />
+            <AddButton showId={show.id} isOnList={isOnList} />
             <Link
               href={`/series/${show.id}/review`}
               className="px-4 py-2 border border-white/75 text-md text-white/75 rounded-full"
