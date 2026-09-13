@@ -3,13 +3,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { submitReview } from "@/actions/watchlist";
+import { submitReview } from "@/actions/review";
 import { reviewSchema, type ReviewInput } from "@/lib/reviewSchema";
+import ErrorMessage from "@/components/ErrorMessage";
 import type { Review } from "@/types/watchList";
-
-const fieldClass =
-  "px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white outline-none focus:border-yellow-600";
-const errorClass = "text-sm text-red-400";
 
 export default function ReviewForm({
   showId,
@@ -52,10 +49,10 @@ export default function ReviewForm({
           type="number"
           min={1}
           max={10}
-          className={fieldClass}
+          className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white outline-none focus:border-yellow-600"
           {...register("rating", { valueAsNumber: true })}
         />
-        {errors.rating && <p className={errorClass}>{errors.rating.message}</p>}
+        <ErrorMessage message={errors.rating?.message} />
       </div>
 
       <div className="flex flex-col gap-1">
@@ -64,12 +61,10 @@ export default function ReviewForm({
           id="episode"
           type="number"
           min={0}
-          className={fieldClass}
+          className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white outline-none focus:border-yellow-600"
           {...register("episode", { valueAsNumber: true })}
         />
-        {errors.episode && (
-          <p className={errorClass}>{errors.episode.message}</p>
-        )}
+        <ErrorMessage message={errors.episode?.message} />
       </div>
 
       <div className="flex flex-col gap-1">
@@ -77,12 +72,10 @@ export default function ReviewForm({
         <textarea
           id="comment"
           rows={6}
-          className={fieldClass}
+          className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white outline-none focus:border-yellow-600"
           {...register("comment")}
         />
-        {errors.comment && (
-          <p className={errorClass}>{errors.comment.message}</p>
-        )}
+        <ErrorMessage message={errors.comment?.message} />
       </div>
 
       <div className="flex flex-col gap-1">
@@ -95,9 +88,7 @@ export default function ReviewForm({
           />
           Sadrži spojlere
         </label>
-        {errors.spoilers && (
-          <p className={errorClass}>{errors.spoilers.message}</p>
-        )}
+        <ErrorMessage message={errors.spoilers?.message} />
       </div>
 
       <button
@@ -108,11 +99,7 @@ export default function ReviewForm({
         {isSubmitting ? "Spremam…" : "Spremi recenziju"}
       </button>
 
-      {errors.root && (
-        <p role="status" className={errorClass}>
-          {errors.root.message}
-        </p>
-      )}
+      <ErrorMessage role="status" message={errors.root?.message} />
     </form>
   );
 }

@@ -14,10 +14,15 @@ export default function Header() {
         className="h-12 w-auto object-contain md:h-16"
       />
       <div className="flex flex-wrap items-center justify-center gap-4 md:flex-nowrap lg:gap-8">
-        <Link className="hover:text-yellow-500" href="/">Katalog</Link>
-        <Link className="hover:text-yellow-500" href="/lista">Moja Lista</Link>
-        <Link className="hover:text-yellow-500" href="/o-projektu">O projektu</Link>
-        <Link className="hover:text-yellow-500" href="/pravila">Pravila</Link>
+        <Link className="hover:text-yellow-500" href="/">
+          Katalog
+        </Link>
+        <Link className="hover:text-yellow-500" href="/lista">
+          Moja Lista
+        </Link>
+        <Link className="hover:text-yellow-500" href="/o-projektu">
+          Info
+        </Link>
         <Suspense fallback="Error">
           <SearchInput />
         </Suspense>

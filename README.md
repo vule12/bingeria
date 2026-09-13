@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+# Kako pokrenuti projekt
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otvori [http://localhost:3000](http://localhost:3000) u pregledniku.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Ostale naredbe:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # produkcijski build
+npm run start   # pokreće build
+npm run lint    # provjera koda
+```
 
-## Learn More
+## Zašto je tražilica klijentska komponenta, a lista rezultata nije?
 
-To learn more about Next.js, take a look at the following resources:
+Tražilica je jedini dio koji mora reagirati tipkamo. Ona pamti što je u polju, čeka da prestanemo tipkati i onda mijenja adresu. To se sve događa u pregledniku.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Lista rezultata ništa ne treba pamtiti. Ona samo prikaže kartice. To se odradi na serveru, prije nego što stranica učita. Time, ključevi i API adrese ne završe u pregledniku i ostanu sigurne.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Čemu služi grupiranje ruta bez utjecaja na URL
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Dijeljenje info u O Projektu i Pravila postoji samo radi organizacije
+koda i dijeljenja istog layouta. Next.js takvu mapu preskoči kad gradi adresu, pa stranice unutar nje žive na `/o-projektu` i `/pravila`, a ne na `/info/o-projektu`.
