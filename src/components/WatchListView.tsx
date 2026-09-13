@@ -15,20 +15,26 @@ export default function WatchListView({ items }: { items: WatchlistItem[] }) {
   const [order, setOrder] = useState<SortOrder>("date");
   const stats = getWatchlistStats(items);
   const ordered = sortWatchlist(items, order);
+  const sortButton = (active: boolean) =>
+    `flex gap-2 px-4 py-2 border rounded-full w-fit items-center ${
+      active
+        ? "bg-yellow-600 border-yellow-600 text-black"
+        : "border-white/30 text-white/75 hover:border-white/60"
+    }`;
   return (
     <div className="flex flex-col gap-5">
       <section className="p-3 flex justify-between border w-full items-center rounded-lg bg-white/10 border-white/10">
         <span>
           <p className="text-yellow-600 text-4xl">{stats.total}</p>
-          <p className="text-white/75">My List</p>
+          <p className="text-white/75">Moja Lista</p>
         </span>
         <span>
           <p className="text-yellow-600 text-4xl">{stats.reviewed}</p>
-          <p className="text-white/75">Reviewed</p>
+          <p className="text-white/75">Ocijenjeno</p>
         </span>
         <span>
           <p className="text-yellow-600 text-4xl">{stats.average ?? "-"}</p>
-          <p className="text-white/75">Average rating</p>
+          <p className="text-white/75">Prosjecna ocjena</p>
         </span>
       </section>
       {items.length ? (
@@ -38,14 +44,16 @@ export default function WatchListView({ items }: { items: WatchlistItem[] }) {
             <div className="flex gap-3">
               <button
                 onClick={() => setOrder("date")}
-                className="flex gap-2 px-4 py-2 bg-yellow-600 text-black rounded-full w-fit items-center"
+                aria-pressed={order === "date"}
+                className={sortButton(order === "date")}
               >
                 <Calendar />
                 Po datumu
               </button>
               <button
                 onClick={() => setOrder("rating")}
-                className="flex gap-2 px-4 py-2 bg-yellow-600 text-black rounded-full w-fit items-center"
+                aria-pressed={order === "rating"}
+                className={sortButton(order === "rating")}
               >
                 <ArrowDownWideNarrow />
                 Po ocjeni
@@ -59,15 +67,15 @@ export default function WatchListView({ items }: { items: WatchlistItem[] }) {
       ) : (
         <section className="flex flex-col items-center gap-6 border border-dashed border-white/20 p-10 rounded-xl">
           <Film className="text-yellow-600 size-10" />
-          <p className="text-4xl">Every good lists starts with one show</p>
+          <p className="text-4xl">Svaka dobra lista počinje jednom serijom</p>
           <p className="text-xl text-white/70">
-            Open the catalogue and add it to the list.
+            Otvori seriju u katalogu i dodaj je na listu.
           </p>
           <Link
             href="/"
             className="px-4 py-3 text-md text-black rounded-full bg-yellow-600"
           >
-            Explore Catalogue
+            Istraži katalog
           </Link>
         </section>
       )}

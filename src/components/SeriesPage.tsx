@@ -24,7 +24,7 @@ export default function SeriesPage({
       >
         Return
       </Link>
-      <section className="grid grid-rows-2 md:grid-rows-none lg:grid-cols-[420px_1fr] gap-6">
+      <section className="grid lg:grid-cols-[420px_1fr] gap-6">
         <div className="aspect-3/4 lg:aspect-2/3 lg:max-w-sm overflow-hidden rounded-2xl relative w-full">
           <Image
             src={show.image?.original ?? "/posterPlaceholder.png"}
@@ -37,7 +37,7 @@ export default function SeriesPage({
           <h1 className="text-4xl lg:text-7xl uppercase font-bold tracking-wide">
             {show.name}
           </h1>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {show.genres.map((name) => (
               <p
                 key={name}
@@ -71,7 +71,7 @@ export default function SeriesPage({
           <p className="text-white/75 leading-7 text-base whitespace-pre-line">
             {summaryToText(show.summary)}
           </p>
-          <div className="flex gap-6 items-center">
+          <div className="flex flex-wrap gap-4 items-center lg:gap-6">
             <AddButton showId={show.id} isOnList={isOnList} />
             <Link
               href={`/series/${show.id}/review`}

@@ -13,9 +13,9 @@ export default function Header() {
         height={256}
         className="h-12 w-auto object-contain sm:h-16"
       />
-      <div className="flex items-center gap-4 lg:gap-8">
-        <Link href="/">Cataloguse</Link>
-        <Link href="/mylist">My List</Link>
+      <div className="flex flex-wrap items-center justify-center gap-4 md:flex-nowrap lg:gap-8">
+        <Link href="/">Katalog</Link>
+        <Link href="/lista">Moja Lista</Link>
         <Link href="/info">Info</Link>
         <Suspense fallback="Error">
           <SearchInput />

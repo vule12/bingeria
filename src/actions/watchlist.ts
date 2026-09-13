@@ -13,7 +13,7 @@ export async function addToList(_previous: ActionState, formData: FormData): Pro
     const show = await getShow(id);
     if (!show) return { status: 'error', message: 'Ova serija više nije dostupna.' };
     const result = await addWatchlistItem(show);
-    revalidatePath('/mylist');
+    revalidatePath('/lista');
     revalidatePath(`/series/${id}`);
     return {
       status: 'success',
@@ -38,7 +38,7 @@ export async function removeFromList(
     return { status: 'error', message: 'Neispravna serija.' };
   try {
     await removeWatchlistItem(id);
-    revalidatePath('/mylist');
+    revalidatePath('/lista');
     revalidatePath(`/series/${id}`);
     revalidatePath(`/series/${id}/review`);
     return { status: 'success', message: 'Serija je uklonjena.' };

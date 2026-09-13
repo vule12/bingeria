@@ -18,11 +18,11 @@ export default function WatchListItems({ item }: { item: WatchlistItem }) {
         <h2 className="text-xl text-white font-bold">{item.name}</h2>
         <p className="text-white/60 text-sm">{item.genres.join(" · ")}</p>
         <p className="text-white/50 text-sm">
-          Dodano
-          {new Intl.DateTimeFormat("hr-HR", { timeZone: "UTC" }).format(
-            new Date(item.addedAt),
-          )}
-          {item.review ? `Ocjena ${item.review.rating}` : "Čeka prvu recenziju"}
+          {`Dodano ${new Intl.DateTimeFormat("hr-HR", {
+            timeZone: "UTC",
+          }).format(new Date(item.addedAt))} · ${
+            item.review ? `Ocjena ${item.review.rating}` : "Čeka prvu recenziju"
+          }`}
         </p>
         <div className="flex justify-between items-center mt-1">
           <button

@@ -26,7 +26,7 @@ export default function AddButton({
       <button
         type="submit"
         disabled={pending || added}
-        className={`flex gap-2 px-4 py-2 text-black font-bold rounded-full w-fit disabled:opacity-60 ${
+        className={`flex gap-2 px-4 py-2 text-black font-bold rounded-full w-fit disabled:opacity-60 hover:bg-yellow-500 hover:cursor-pointer ${
           added ? "bg-green-600" : "bg-yellow-600"
         }`}
       >
