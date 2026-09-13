@@ -73,12 +73,6 @@ export default function SeriesPage({
           </p>
           <div className="flex flex-wrap gap-4 items-center lg:gap-6">
             <AddButton showId={show.id} isOnList={isOnList} />
-            <Link
-              href={`/series/${show.id}/review`}
-              className="px-4 py-2 border border-white/75 text-md text-white/75 rounded-full"
-            >
-              Napiši recenziju
-            </Link>
           </div>
         </div>
       </section>

@@ -54,6 +54,19 @@ export async function addWatchlistItem(
   return "added";
 }
 
+export async function saveReview(
+  showId: number,
+  review: Review,
+): Promise<boolean> {
+  const items = await readWatchlist();
+  if (!items.some((item) => item.showId === showId)) return false;
+
+  await writeWatchlist(
+    items.map((item) => (item.showId === showId ? { ...item, review } : item)),
+  );
+  return true;
+}
+
 export async function removeWatchlistItem(id: number): Promise<void> {
   const items = await readWatchlist();
   await writeWatchlist(items.filter((item) => item.showId !== id));

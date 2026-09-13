@@ -1,9 +1,10 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { addWatchlistItem, removeWatchlistItem } from '@/lib/storage';
+import { addWatchlistItem, removeWatchlistItem, saveReview } from '@/lib/storage';
 import { getShow} from '@/lib/tvmaze';
-import type { ActionState } from '@/types/watchList';
+import { reviewSchema, type ReviewInput } from '@/lib/reviewSchema';
+import type { ActionState, ReviewResult } from '@/types/watchList';
 
 export async function addToList(_previous: ActionState, formData: FormData): Promise<ActionState> {
   const id = Number(formData.get('showId'));
@@ -44,5 +45,25 @@ export async function removeFromList(
     return { status: 'success', message: 'Serija je uklonjena.' };
   } catch {
     return { status: 'error', message: 'Uklanjanje nije uspjelo. Pokušaj ponovno.' };
+  }
+}
+
+export async function submitReview(
+  showId: number,
+  input: ReviewInput,
+): Promise<ReviewResult> {
+  const parsed = reviewSchema.safeParse(input);
+  if (!parsed.success)
+    return { success: false, message: 'Recenzija nije prošla provjeru. Ispravi polja i pokušaj ponovno.' };
+
+  try {
+    const saved = await saveReview(showId, parsed.data);
+    if (!saved) return { success: false, message: 'Serija nije na tvojoj listi.' };
+    revalidatePath('/lista');
+    revalidatePath(`/series/${showId}`);
+    revalidatePath(`/series/${showId}/review`);
+    return { success: true };
+  } catch {
+    return { success: false, message: 'Spremanje recenzije nije uspjelo. Pokušaj ponovno.' };
   }
 }

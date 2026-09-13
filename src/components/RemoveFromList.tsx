@@ -8,9 +8,13 @@ import type { ActionState } from "@/types/watchList";
 const initial: ActionState = { status: "idle", message: " " };
 
 export default function RemoveButton({ showId }: { showId: number }) {
-  const [, action, pending] = useActionState(removeFromList, initial, "/lista");
+  const [state, action, pending] = useActionState(
+    removeFromList,
+    initial,
+    "/lista",
+  );
   return (
-    <form action={action}>
+    <form action={action} className="flex flex-col gap-1">
       <input type="hidden" name="showId" value={showId} />
       <button
         type="submit"
@@ -20,6 +24,11 @@ export default function RemoveButton({ showId }: { showId: number }) {
         <Trash2 className="size-4" />
         {pending ? "Uklanjam…" : "Ukloni"}
       </button>
+      {state.status === "error" && (
+        <p role="status" className="text-sm text-red-400">
+          {state.message}
+        </p>
+      )}
     </form>
   );
 }
