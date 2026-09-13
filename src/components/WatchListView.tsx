@@ -18,7 +18,7 @@ export default function WatchListView({ items }: { items: WatchlistItem[] }) {
   const sortButton = (active: boolean) =>
     `flex gap-2 px-4 py-2 border rounded-full w-fit items-center ${
       active
-        ? "bg-yellow-600 border-yellow-600 text-black"
+        ? "bg-yellow-600 border-yellow-600 text-black hover:bg-yellow-500"
         : "border-white/30 text-white/75 hover:border-white/60"
     }`;
   return (
@@ -73,7 +73,7 @@ export default function WatchListView({ items }: { items: WatchlistItem[] }) {
           </p>
           <Link
             href="/"
-            className="px-4 py-3 text-md text-black rounded-full bg-yellow-600"
+            className="px-4 py-3 text-md text-black rounded-full bg-yellow-600 hover:bg-yellow-500"
           >
             Istraži katalog
           </Link>

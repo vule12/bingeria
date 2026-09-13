@@ -22,7 +22,7 @@ export default function ReviewCard({ review }: { review: Review }) {
         <button
           type="button"
           onClick={reveal}
-          className="absolute inset-0 flex gap-2 items-center justify-center font-bold text-yellow-600 hover:cursor-pointer"
+          className="absolute inset-0 flex gap-2 items-center justify-center font-bold text-yellow-600 hover:text-yellow-500 hover:cursor-pointer"
         >
           <EyeOff className="size-4" />
           Sadrži spojlere — prikaži

@@ -10,11 +10,11 @@ interface ShowCardProps {
 
 export default function Card({ show, priority = false }: ShowCardProps) {
   return (
-    <div>
+    <div className="flex flex-col gap-3">
       <Link href={`/series/${show.id}`}>
         <div className="relative aspect-3/4 rounded-2xl">
           <Image
-            className="object-cover"
+            className="object-cover hover:opacity-80"
             src={show.image?.original ?? "/posterPlaceholder.png"}
             alt={show.name}
             fill

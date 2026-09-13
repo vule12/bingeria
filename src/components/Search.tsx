@@ -12,6 +12,7 @@ export function SearchInput() {
   const initialQuery = searchParams.get("q") ?? "";
   const [query, setQuery] = useState(initialQuery);
   const [open, setOpen] = useState(false);
+  const [previousPathname, setPreviousPathname] = useState(pathname);
   const debouncedQuery = useDebounce(query);
   const syncedQuery = useRef(initialQuery);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -20,9 +21,10 @@ export function SearchInput() {
     if (open) inputRef.current?.focus();
   }, [open]);
 
-  useEffect(() => {
-    if (pathname !== "/") setOpen(false);
-  }, [pathname]);
+  if (pathname !== previousPathname) {
+    setPreviousPathname(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     if (initialQuery !== syncedQuery.current) {
@@ -48,7 +50,7 @@ export function SearchInput() {
         onClick={() => setOpen(true)}
         aria-label="Pretraži serije"
         aria-expanded={open}
-        className={`rounded-xl border border-line bg-panel p-3 text-accent ${
+        className={`rounded-xl border border-white/10 bg-white/5 p-3 text-yellow-600 hover:text-yellow-500 ${
           open ? "hidden" : "md:hidden"
         }`}
       >
@@ -69,8 +71,8 @@ export function SearchInput() {
         <label htmlFor="search" className="sr-only">
           Pretraži serije
         </label>
-        <div className="flex min-h-16 items-center gap-3 rounded-xl border border-line bg-panel px-4 focus-within:border-accent sm:px-5">
-          <Search className="size-5 shrink-0 text-accent" />
+        <div className="flex min-h-16 items-center gap-3 rounded-xl border border-white/10 bg-white/5 md:px-4 focus-within:border-yellow-600 px-5">
+          <Search className="size-5 shrink-0 text-yellow-600" />
           <input
             ref={inputRef}
             id="search"
@@ -80,8 +82,8 @@ export function SearchInput() {
             autoComplete="off"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Pronađi svoju sljedeću seriju…"
-            className="min-w-0 flex-1 bg-transparent py-4 text-sm outline-none placeholder:text-muted focus-visible:outline-none sm:text-base"
+            placeholder="Pronađi sljedeću seriju…"
+            className="min-w-0 flex-1 bg-transparent py-4 text-sm outline-none placeholder:text-white/50 focus-visible:outline-none"
           />
         </div>
       </form>

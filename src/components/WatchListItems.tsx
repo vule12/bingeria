@@ -13,7 +13,7 @@ export default function WatchListItems({ item }: { item: WatchlistItem }) {
         className="block relative w-24 shrink-0 aspect-2/3 rounded-lg overflow-hidden"
       >
         <Image
-          className="object-cover"
+          className="object-cover hover:opacity-80"
           src={item.image ?? "/posterPlaceholder.png"}
           alt={item.name}
           fill
@@ -21,7 +21,7 @@ export default function WatchListItems({ item }: { item: WatchlistItem }) {
       </Link>
       <div className="flex flex-col gap-2 flex-1 min-w-0">
         <h2 className="text-xl text-white font-bold">
-          <Link href={`/series/${item.showId}`} className="hover:text-yellow-600">
+          <Link href={`/series/${item.showId}`} className="hover:text-yellow-500">
             {item.name}
           </Link>
         </h2>
@@ -37,7 +37,7 @@ export default function WatchListItems({ item }: { item: WatchlistItem }) {
         <div className="flex justify-between items-center mt-1">
           <Link
             href={`/series/${item.showId}/review`}
-            className="flex gap-2 items-center text-yellow-600 font-bold"
+            className="flex gap-2 items-center text-yellow-600 font-bold hover:text-yellow-500"
           >
             <Pencil className="size-4" />
             {item.review ? "Uredi recenziju" : "Napiši recenziju"}

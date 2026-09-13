@@ -22,7 +22,7 @@ export default async function ReviewPage({
     <section className="mx-auto max-w-2xl px-4 py-8 flex flex-col gap-5">
       <Link
         href="/lista"
-        className="px-4 py-2 bg-yellow-600 text-black font-bold rounded-full w-fit"
+        className="px-4 py-2 bg-yellow-600 text-black font-bold rounded-full w-fit hover:bg-yellow-500"
       >
         Moja lista
       </Link>

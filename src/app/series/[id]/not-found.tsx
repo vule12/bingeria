@@ -11,7 +11,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="px-4 py-3 text-md text-black rounded-full bg-yellow-600"
+        className="px-4 py-3 text-md text-black rounded-full bg-yellow-600 hover:bg-yellow-500"
       >
         Istraži katalog
       </Link>

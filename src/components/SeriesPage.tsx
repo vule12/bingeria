@@ -20,7 +20,7 @@ export default function SeriesPage({
     <div className="mx-auto max-w-6xl px-4 py-8">
       <Link
         href="/"
-        className="flex px-4 py-2 bg-yellow-600 text-black font-bold rounded-full w-fit mb-4"
+        className="flex px-4 py-2 bg-yellow-600 text-black font-bold rounded-full w-fit mb-4 hover:bg-yellow-500"
       >
         Return
       </Link>
